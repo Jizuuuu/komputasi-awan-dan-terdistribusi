@@ -55,7 +55,56 @@ Untuk mendukung fungsi sistem yang berbeda, kelompok kami memilih kombinasi IaaS
 
 Kombinasi ini dipilih karena tidak semua komponen membutuhkan tingkat pengelolaan infrastruktur yang sama. Database dan biometrik membutuhkan kendali lebih besar, sedangkan API serta portal lebih mengutamakan kemudahan pengembangan dan penggunaan. SaaS dalam rancangan ini tetap dapat dijalankan pada infrastruktur milik pemerintah.
 
-### 3.
+### 3. Risiko dan Mitigasi
+
+Penggunaan Hybrid Cloud memiliki beberapa risiko yang perlu diperhatikan, terutama karena sistem menyimpan data pribadi dan digunakan oleh banyak instansi.
+
+*Risiko 1: Kebocoran data melalui API*
+
+Banyaknya instansi yang terhubung dapat meningkatkan risiko penyalahgunaan akses. Misalnya, suatu instansi memperoleh informasi penduduk yang sebenarnya tidak termasuk dalam kewenangannya.
+
+Mitigasi:
+- Menerapkan autentikasi dan otorisasi pada setiap permintaan API.
+- Menggunakan enkripsi komunikasi.
+- Membatasi akses berdasarkan peran dan kewenangan instansi.
+- Mencatat aktivitas akses melalui audit log.
+
+*Risiko 2: Ketidaksinkronan data*
+
+Data kependudukan dapat berubah, seperti perubahan alamat atau informasi administrasi. Apabila pembaruan tidak tersampaikan dengan baik antara layanan dan database utama, instansi bisa menggunakan informasi yang sudah tidak sesuai.
+
+Mitigasi:
+- Menjadikan Private Cloud sebagai sumber data utama.
+- Menggunakan API untuk mengambil informasi terbaru.
+- Menerapkan mekanisme sinkronisasi secara terkontrol.
+- Melakukan pemeriksaan kesesuaian data secara berkala.
+
+*Risiko 3: Lonjakan akses saat periode tertentu*
+
+Pada saat pemilu atau pendaftaran sekolah, jumlah permintaan dari berbagai instansi dapat meningkat secara bersamaan. Hal ini berpotensi memperlambat layanan atau menyebabkan sistem tidak dapat diakses.
+
+Mitigasi:
+- Menerapkan autoscaling pada layanan aplikasi.
+- Menggunakan message queue untuk mengatur antrean permintaan.
+- Menerapkan rate limiting agar permintaan tidak membebani sistem secara berlebihan.
+- Memantau penggunaan sumber daya secara berkala.
+
+### 4. Perbandingan dengan Alternatif yang Ditolak
+
+Alternatif yang tidak dipilih adalah *Public Cloud murni*. Model ini sebenarnya memiliki keunggulan dalam hal skalabilitas dan kemudahan penyediaan sumber daya. Namun, terdapat pertimbangan terkait pengelolaan infrastruktur karena layanan Public Cloud umumnya melibatkan penyedia eksternal.
+
+Hal tersebut menjadi pertimbangan penting karena Sistem Data Kependudukan menyimpan informasi sensitif, termasuk NIK dan data biometrik, yang harus tetap berada dalam kendali penuh pemerintah.
+
+Perbandingan kedua model:
+
+| Aspek | Hybrid Cloud | Public Cloud |
+|---|---|---|
+| Penyimpanan data utama | Private Cloud dalam kendali pemerintah | Infrastruktur penyedia layanan |
+| Akses antarinstansi | Melalui Community Cloud | Melalui layanan Public Cloud |
+| Skalabilitas | Memanfaatkan sumber daya bersama dan penyesuaian kapasitas | Memanfaatkan kapasitas dari penyedia layanan |
+| Kendali infrastruktur | Dapat dipertahankan pemerintah melalui pengelolaan kedua lingkungan cloud | Sebagian pengelolaan infrastruktur berada pada penyedia layanan |
+
+Berdasarkan perbandingan tersebut, kelompok kami lebih memilih Hybrid Cloud karena dinilai lebih sesuai dengan kebutuhan kerahasiaan data dan kendali infrastruktur pemerintah. Public Cloud murni tidak dipilih bukan karena selalu tidak aman, melainkan karena pengelolaannya kurang sesuai dengan persyaratan khusus pada studi kasus ini.
 
 ## Struktur Submission
 

@@ -40,7 +40,22 @@ Penerapan lima karakteristik esensial NIST pada sistem ini:
 
 Dengan pembagian tersebut, data utama tetap berada dalam Private Cloud, sedangkan Community Cloud membantu menangani kebutuhan akses bersama. Kedua lingkungan harus tetap berada dalam kendali pemerintah, termasuk pengelolaan akses dan keamanannya.
 
+### 2. Rekomendasi Service Model (Ditulis oleh Aziz Faadihilah)
 
+Untuk mendukung fungsi sistem yang berbeda, kelompok kami memilih kombinasi IaaS, PaaS, dan SaaS. Pembagiannya disesuaikan dengan kebutuhan pengelolaan setiap komponen.
+
+| Komponen Sistem | Service Model | Alasan |
+|---|---|---|
+| Database utama kependudukan | IaaS | Membutuhkan kendali terhadap server, penyimpanan, sistem operasi, dan konfigurasi keamanan. |
+| Penyimpanan data biometrik | IaaS | Membutuhkan pengelolaan penyimpanan dan keamanan yang lebih terkontrol. |
+| API dan integrasi antarinstansi | PaaS | Memudahkan pengembangan dan pengelolaan layanan yang menghubungkan berbagai instansi. |
+| Message queue | PaaS | Membantu mengatur antrean permintaan ketika banyak instansi mengakses sistem bersamaan. |
+| Portal layanan instansi | SaaS | Instansi dapat menggunakan aplikasi tanpa harus mengelola server sendiri. |
+| Portal pengecekan status masyarakat | SaaS | Masyarakat dapat menggunakan layanan melalui browser tanpa perlu memasang aplikasi khusus. |
+
+Kombinasi ini dipilih karena tidak semua komponen membutuhkan tingkat pengelolaan infrastruktur yang sama. Database dan biometrik membutuhkan kendali lebih besar, sedangkan API serta portal lebih mengutamakan kemudahan pengembangan dan penggunaan. SaaS dalam rancangan ini tetap dapat dijalankan pada infrastruktur milik pemerintah.
+
+### 3.
 
 ## Struktur Submission
 

@@ -18,7 +18,29 @@ Pemerintah ingin membangun **Sistem Data Kependudukan** (nama, NIK, alamat, data
 3. Jelaskan **minimal 2 risiko spesifik** dari pilihan kalian dan mitigasinya (mis. jika Hybrid Cloud dipilih: risiko sinkronisasi data antara private & public segment).
 4. Bandingkan singkat dengan **satu alternatif yang kalian tolak** — kenapa alternatif itu kurang tepat (mis. kenapa Public Cloud murni ditolak, atau kenapa Private Cloud murni dianggap kurang skalabel).
 
-## Analisis
+## Analisis 
+### 1. Rekomendasi Deployment Model (Ditulis oleh Aziz Faadihilah)
+
+Berdasarkan kebutuhan sistem, kelompok kami memilih **Hybrid Cloud**, yaitu gabungan antara Private Cloud dan Community Cloud. Pemilihan ini didasarkan pada kebutuhan untuk menjaga kerahasiaan data kependudukan sekaligus mendukung akses dari berbagai instansi.
+
+Pembagian penggunaannya adalah sebagai berikut:
+
+- **Private Cloud:** Digunakan untuk menyimpan database utama, seperti nama, NIK, alamat, dan data biometrik. Pengelolaannya berada dalam kendali pemerintah agar informasi kependudukan tidak ditempatkan pada infrastruktur yang tidak dikuasai negara.
+- **Community Cloud:** Digunakan sebagai lingkungan bersama untuk layanan API, integrasi, dan akses antarinstansi seperti Dukcapil, kepolisian, serta bank yang memiliki kewenangan.
+
+Penerapan lima karakteristik esensial NIST pada sistem ini:
+
+| Karakteristik NIST | Penerapan pada Sistem |
+|---|---|
+| On-demand self-service | Pemerintah dapat menambah kapasitas komputasi atau penyimpanan ketika kebutuhan meningkat. |
+| Broad network access | Instansi dari berbagai daerah dapat mengakses layanan melalui jaringan yang aman. |
+| Resource pooling | Sumber daya Community Cloud dapat digunakan bersama oleh berbagai instansi sesuai hak aksesnya. |
+| Rapid elasticity | Kapasitas layanan dapat ditingkatkan ketika terjadi lonjakan permintaan, misalnya saat pemilu atau pendaftaran sekolah. |
+| Measured service | Penggunaan sumber daya dan aktivitas akses setiap instansi dapat dipantau untuk membantu pengelolaan sistem. |
+
+Dengan pembagian tersebut, data utama tetap berada dalam Private Cloud, sedangkan Community Cloud membantu menangani kebutuhan akses bersama. Kedua lingkungan harus tetap berada dalam kendali pemerintah, termasuk pengelolaan akses dan keamanannya.
+
+
 
 ## Struktur Submission
 
